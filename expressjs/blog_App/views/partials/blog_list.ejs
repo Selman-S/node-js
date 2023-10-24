@@ -1,0 +1,28 @@
+  <!--HOme posts-->
+  <section class="home-post py-5 mt-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <% blogs.forEach(element => { %>
+          <div class="col-md-3 position-relative">
+          <div class="card shadow-sm mb-3">
+            <img src="/static/images/<%= element.image %>" alt="post Image" class="card-img-top img-thumbnail ">
+            <div class="card-body">
+              <h3 class="fs-5"> <%=element.title %> </h3>
+              <% if (element.newBadge) { %>
+                <span class="badge badge-primary bg-danger position-absolute top-0 end-0">New</span>
+              <% } %>
+              <p class="small fw-light"><%=element.description %> 
+              </p>
+              <a href="#" class="btn btn-sm btn-warning rounded-pill shadow-sm px-3">Read more..</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+       
+
+      </div>
+
+    </div>
+  </section>
+  <!--HOme posts-->
