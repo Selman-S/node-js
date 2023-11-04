@@ -6,6 +6,13 @@ app.set('view engine','ejs');
 console.log(app.get('view engine'));
 
 
+
+
+
+
+
+
+
 const userRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
 
@@ -14,6 +21,8 @@ app.use("/static",express.static(path.join(__dirname,'public')));
 
 app.use(adminRoutes);
 app.use(userRoutes);
+
+
 
 
 // app.use((req,res,next)=>{
