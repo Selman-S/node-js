@@ -102,7 +102,7 @@ router.use('/',async function(req,res){
     // console.log(blogs);
     
     res.render('users/index',{
-      title:'Blog Detay',
+      title:'Blog App With Express',
       blogs:blogs,
       blogid:id,
       category:categories,

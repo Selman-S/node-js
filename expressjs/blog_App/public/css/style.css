@@ -13,3 +13,20 @@
 .custom-nav {
   backdrop-filter: blur(8px);
 }
+
+.body-content {
+  min-height: calc(100vh - 168px);
+}
+
+.card-description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.card-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

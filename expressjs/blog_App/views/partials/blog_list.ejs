@@ -1,5 +1,5 @@
 <!--HOme posts-->
-<section class="home-post py-5 mt-5">
+<section class="home-post py-5 my-5 body-content">
   <div class="container">
     <div class="row g-4">
       <div class="col-md-3 mb-3 ">
@@ -25,20 +25,21 @@
 
      
       <% blogs.forEach(element=> { %>
-        <div class="col-md-6 col-lg-4 col-xl-3  position-relative">
+        <div class="col-md-12 col-lg-6 col-xl-4  position-relative">
           <div class="card shadow-sm mb-3">
-            <span class="badge">
-              <%= element.categoryid %>
-            </span>
-            <img src="/static/images/<%= element.image %>" alt="post Image" class="card-img-top img-thumbnail ">
+           
+            <div class=""style="height:200px">
+
+              <img src="<%= element.image %>" alt="post Image" class="card-img-top  object-fit-cover h-100 ">
+            </div>
             <div class="card-body">
-              <h3 class="fs-5">
+              <h3 class="fs-5 card-title">
                 <%=element.title %>
               </h3>
-              <% if (element.newBadge) { %>
-                <span class="badge badge-primary bg-danger position-absolute top-0 end-0">New</span>
+              <% if (element.isAccepted) { %>
+                <span class="badge badge-primary bg-danger position-absolute top-0 end-0 z-2">New</span>
                 <% } %>
-                  <p class="small fw-light">
+                  <p class="small fw-light card-description">
                     <%=element.description %>
                   </p>
                   <a href="/blogs/<%= element.blogid %>" class="btn btn-sm btn-warning rounded-pill shadow-sm px-3">Read

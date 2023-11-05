@@ -1,16 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include("../partials/head.ejs") %>
+
+<head>
+  <%- include("../partials/head.ejs") %>
 </head>
 
 <body class="bg-light">
 
-    <%- include("../partials/nav.ejs") %>
+  <%- include("../partials/nav.ejs") %>
+  <div class="container my-5">
+      
+        <% if (message) { %>
+         <div class="pt-4">
 
-    blog list
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+           <div class="alert alert-success ">
+             <%= message %>
+            </div>
+          </div>
+          <script>
+            setTimeout(() => {
+              document.querySelector(".alert").remove();
+            }, 3000);
+          </script> 
+          <% } %>
+      <h1 class="display-6 py-4">
+        <%= title %>
+      </h1>
+      <div class="row">
+        <div class="col-md12 mt-">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">İmage</th>
+                <th scope="col">Title</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% blogs.forEach(element=> { %>
+
+                <tr>
+
+                  <td style="width: 50px;">#<%= element.blogid %>
+                  </td>
+                  <td>
+                    <img style="width: 180px;" src="<%= element.image %>" alt="" class="img-fluid">
+                  </td>
+                  <td>
+                    <%= element.title %>
+                  </td>
+                  <td style="width: 130px;">
+                    <a class="btn btn-sm  btn-primary" href="/admin/blog/<%= element.blogid %>">Edit</a>
+                    <a class="btn btn-sm btn-danger"
+                      onClick="deleteBlogId('<%= element.title %>','<%= element.image %>','<%= element.blogid %>')"
+                      data-bs-toggle="modal" data-bs-target="#delete-blog-modal">Delete</a>
+                    <script>
+                      function deleteBlogId(title, image, blogid) {
+                        console.log(title);
+                        document.querySelector(".deleting_blog").innerHTML = `
+                  <div class="alert alert-danger" >
+                    <input type="hidden" name="blogid" value="${blogid}">
+                    ${title} isimli blog silinecek!
+                    <br>
+                    <img src=${image} style="width:70px;" alt="" class="img-fluid">
+                  </div>
+                  `;
+                        document.querySelector(".btn-danger").href = "/admin/blog/delete/";
+                      }
+                    </script>
+                  </td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <%- include("../partials/footer.ejs") %>
+      <!--delete modal-->
+      <div class="modal fade" id="delete-blog-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <form action="" method="post">
+<div class="modal-content  ">
+            <div class="modal-header text-bg-danger">
+              <h5 class="modal-title">Delete Blog</h5>
+              <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="close">
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Are you sure you want to delete this blog?
+              </p>
+              <div class="deleting_blog"></div>
+            </div>
+            <div class="modal-footer">
+
+              <button type="submit" class="btn btn-danger">Delete Blog</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+          </form>
+          
+        </div>
+      </div>
+      <!--delete modal-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
+
+
 </html>

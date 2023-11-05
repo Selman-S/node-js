@@ -3,14 +3,7 @@ const app = express();
 const path = require('path');
 
 app.set('view engine','ejs');
-console.log(app.get('view engine'));
-
-
-
-
-
-
-
+app.use(express.urlencoded({extended:false}));
 
 
 const userRoutes = require('./routes/user');
